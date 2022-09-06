@@ -1,42 +1,27 @@
 import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { Text, Image, View, StyleSheet } from "react-native";
 
-const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
+const SingleResult = ({ result }) => {
 	return (
-		<View style={styles.backgroundStyle}>
-			<Feather name="search" style={styles.iconStyle} />
-			<TextInput
-				autoCapitalize="none"
-				autoCorrect={false}
-				value={term}
-				onChangeText={onTermChange}
-				style={styles.inputStyle}
-				placeholder="Search"
-				onEndEditing={onTermSubmit}
-			/>
+		<View>
+			<Text style={styles.name}>{result.name}</Text>
+			<Text>
+				{result.rating} stars, {result.review_count} reviews
+			</Text>
+			<Image style={styles.image} source={{ uri: result.image_url }} />
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	backgroundStyle: {
-		backgroundColor: "#f0eeee",
-		height: 50,
-		borderRadius: 5,
-		marginHorizontal: 15,
-		flexDirection: "row",
-		marginTop: 10
+	image: {
+		width: 250,
+		height: 120,
+		borderRadius: 4
 	},
-	inputStyle: {
-		flex: 1,
-		fontSize: 18
-	},
-	iconStyle: {
-		fontSize: 35,
-		alignSelf: "center",
-		marginHorizontal: 15
+	name: {
+		fontWeight: "bold"
 	}
 });
 
-export default SearchBar;
+export default SingleResult;
